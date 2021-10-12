@@ -1,5 +1,5 @@
 #library
-from scilab import scilab
+from scilab import scilab as sci
 
 from tkinter import *
 from tkinter import ttk
@@ -18,6 +18,6 @@ style.theme_use("winnative")
 #end window's properties
  
 frame = Frame(root)
+print ('hello world')
 
 root.mainloop()
-print ('hello world')
