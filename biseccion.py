@@ -1,5 +1,6 @@
 import numpy as np
 from math import *
+from sympy import * 
 
 def biseccion(func, a, b, err):
     def f(x):
@@ -22,6 +23,12 @@ def biseccion(func, a, b, err):
             print("{}\t {:.4f} \t {:.5f} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}".format(i,a,b,ra,f(a),f(b),f(ra),ea))
         print("\n Raiz en {:.6f} Iteraciones: {}".format(ra,i))
         print("------------------------------------------------------------------------")
+        grafica(func)
     else:
         print('No hay raíz en el intervalo dado')
-    #Investigar grafica#
+
+#Investigar grafica#
+def grafica(fun):
+    x = Symbol("x")
+    f = fun
+    plot(f,(x,-10,10))
