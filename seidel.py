@@ -1,11 +1,17 @@
-#-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-36 
-def metodo(a,b,e,maxI):
+#-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-36 ejemplo de entrada
+#Argumentos:
+# a = matrix de coeficientes separados por espacios y punto y coma
+# b = vector de terminos independientes separados por punto y coma
+# e = error permitido
+# maxI = maximo de iteraciones
+
+def metodo(a,b,e,maxI): #definición del método
     x0,x1=[],[]
     num = len(a)
-    for i in range(num):
+    for i in range(num): #vector de aproximación auxiliar
         x0.append(0)
-    k, err, imp, x1 = 0, 1, "k\t", x0.copy()    
-    for i in range(num):
+    k, err, imp, x1 = 0, 1, "k\t", x0.copy() #variables auxiliares
+    for i in range(num): #impresión de la tabla
         imp +=  "x"+str(i+1)+"\t\t"
     print(imp+"error")
     print("------------------------------------------------\n")
@@ -27,7 +33,9 @@ def metodo(a,b,e,maxI):
         if k > maxI:
             print("El método no converge")
             break
-
+    ######FIN MÉTODO GAUSS-SEIDEL#######
+    
+#conversor de string a matrix
 def converA(coe):
     mat = []
     sr,k = "", 0
@@ -50,7 +58,7 @@ def converA(coe):
         mat.append(arr)
     return mat
 
-
+#conversor de string a vector
 def converB(array):
     sr= ""
     array += " "

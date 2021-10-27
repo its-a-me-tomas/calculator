@@ -1,19 +1,21 @@
+# invocar a los archivos para los métodos
 from seidel import *
 from biseccion import *
+#librerias para la interfaz grafica (aun trabajando)
+#from tkinter import *
+#from tkinter import ttk
 
-from tkinter import *
-from tkinter import ttk
-
+#Opciones para la calculadora
 inp = int(input("solución de sistema de ecuaciones(2) o raiz de ecuación no lineal(1)->"))
+#raiz de ecuaciones no lineales bisección#
 if inp == 1:
     fun = input("Ingresa la función-->")
     a = float(input("Intervalo menor ->"))
     b = float((input("Intervalo mayor ->")))
     ea = float((input("Error permitido ->")))
     biseccion(fun, a, b, ea)
-#ecuaciones no lineales bisección#
+#seidel Sistemas de ecuaciones
 elif inp == 2 :
-#seidel ecuaciones lineales#
     a = converA(input("Ingrese la matriz de coeficientes->"))
     b = converB(input("Ingresa el vector de términos independientes->"))
     e = float(input("Error permitido->"))
@@ -22,8 +24,9 @@ elif inp == 2 :
 
 
 """
+Interfaz en proceso
 #-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-6
-[[-7,-4,-1,-1],[-1,8,-5,0],[-1,-2,-4,0],[0,2,0,-6]] 
+ 
 root = Tk()
 #properties
 root.iconbitmap('Calculator.ico')
