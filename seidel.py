@@ -5,7 +5,7 @@
 # e = error permitido
 # maxI = maximo de iteraciones
 
-def metodo(a,b,e,maxI): #definición del método
+def siedel(a,b,e,maxI): #definición del método
     x0,x1=[],[]
     num = len(a)
     for i in range(num): #vector de aproximación auxiliar

@@ -1,26 +1,26 @@
 # invocar a los archivos para los métodos
 from seidel import *
-from biseccion import *
+from secante import *
 #librerias para la interfaz grafica (aun trabajando)
 #from tkinter import *
 #from tkinter import ttk
 
 #Opciones para la calculadora
 inp = int(input("solución de sistema de ecuaciones(2) o raiz de ecuación no lineal(1)->"))
-#raiz de ecuaciones no lineales bisección#
+#raiz de ecuaciones no lineales secante#
 if inp == 1:
     fun = input("Ingresa la función-->")
-    a = float(input("Intervalo menor ->"))
-    b = float((input("Intervalo mayor ->")))
+    a = float(input("1er Aproximación Inicial ->"))
+    b = float((input("2da Aproximación Inicial ->")))
     ea = float((input("Error permitido ->")))
-    biseccion(fun, a, b, ea)
+    secante(fun, a, b, ea)
 #seidel Sistemas de ecuaciones
 elif inp == 2 :
     a = converA(input("Ingrese la matriz de coeficientes->"))
     b = converB(input("Ingresa el vector de términos independientes->"))
     e = float(input("Error permitido->"))
     maxI = int(input("Máxima de iteraciones->"))
-    metodo(a,b,e,maxI)
+    seidel(a,b,e,maxI)
 
 
 """
