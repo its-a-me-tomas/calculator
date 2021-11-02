@@ -20,7 +20,6 @@ def secante(func, a, b, err):
         if i > 30:
             print("El método no converge")
             break
-        
         ra = b - ((b-a)/(f(b)-f(a)))*f(b)
         ea = abs(ra-b)
         #rx = ra
@@ -30,7 +29,6 @@ def secante(func, a, b, err):
     print("\n Raiz en {:.6f} Iteraciones: {}".format(ra,i))
     print("------------------------------------------------------------------------")
     #fin método secante
-    
     grafica(func) #graficar la ecuación
 
 #método grafica#
