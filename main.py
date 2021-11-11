@@ -2,7 +2,7 @@
 from seidel import *
 from secante import *
 #librerias para la interfaz grafica (aun trabajando)
-from tkinter import *
+import tkinter as tk
 #from tkinter import ttk
 
 """
@@ -25,51 +25,92 @@ elif inp == 2 :
 """
 
 ############INTERFAZ GRAFICA#########################
-
+#INICIALIZAR#
+root = tk.Tk()
+root.withdraw()
+current_window  = None
 ####   windows   ####
 def windowsys():
-     sys = Toplevel(root)
-     labelExample = Label(sys, text="Sistemas de ecuaciones")
-     buttonExample = Button(sys, text="Resolve")
-
-     labelExample.pack()
-     buttonExample.pack()
-     sys.resizable(False, False)
-     sys.geometry("600x420")
-     sys.config(cursor="pirate")
-     sys.iconbitmap('Calculator.ico')
+    global current_window
+    if current_window is not None:
+        current_window.destroy()
+    current_window = tk.Toplevel(root)
+    current_window.wm_protocol("WM_DELETE_WINDOW", mainWindow)
+    window = current_window
+    #properties
+    window.iconbitmap('Calculator.ico')
+    window.title('Calculadora de Sistemas de ecuaciones no lineales')
+    window.resizable(0,0)
+    window.geometry("720x420")
+    #extra settings
+    window.config(cursor="pirate")
+    #mensaje
+    asd = tk.Label(window, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones y sistemas no lineales!")
+    asd.place(x=130, y=50, width=450, height=20)
+    #ventana de secante o sistema
+    window.mainloop()
 
 def windowequ():
-     equ = Toplevel(root)
-     labelExample = Label(equ, text="Ecuaciones no lineales")
-     buttonExample = Button(equ, text="Resolve")
+    global current_window
+    if current_window is not None:
+        current_window.destroy()
+    current_window = tk.Toplevel(root)
+    current_window.wm_protocol("WM_DELETE_WINDOW", mainWindow)
+    window = current_window
+    window.iconbitmap('Calculator.ico')
+    window.title('Calculadora de sistemas de ecuaciones')
+    window.resizable(0,0)
+    window.geometry("720x420")
+    #extra settings
+    window.config(cursor="pirate")
+    #mensaje
+    asd = tk.Label(window, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones!")
+    asd.place(x=130, y=50, width=450, height=20)
+    window.mainloop()
 
-     labelExample.pack()
-     buttonExample.pack()
+def mainWindow():
+    global current_window
+    if current_window is not None:
+        current_window.destroy()
+    current_window = tk.Toplevel(root)
+    current_window.wm_protocol("WM_DELETE_WINDOW", root.destroy)
+    window = current_window #crea ventana    
+    window.iconbitmap('Calculator.ico')
+    window.title('Calculadora de Sistemas de sistemas de ecuaciones')
+    window.resizable(0,0)
+    window.geometry("720x420")
+    #extra settings
+    window.config(cursor="pirate")
 
-     equ.resizable(False, False)
-     equ.geometry("600x420")
-     equ.config(cursor="pirate")
-     equ.iconbitmap('Calculator.ico')
+    #botones para elegir
+    pto = tk.Button(window, text="Sistema de ecuaciones", command=windowsys)
+    pto2 = tk.Button(window, text="Ecuacion no lineal", command=windowequ)
+    pto.place(x=120, y=205)
+    pto2.place(x=400, y=205)
+    #mensaje
+    asd = tk.Label(window, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones y sistemas no lineales!")
+    asd.place(x=130, y=50, width=450, height=20)
+    #ventana de secante o sistema
+    window.mainloop()
 
+window = mainWindow()
 
-root = Tk() #inicializar
-#properties
-root.iconbitmap('Calculator.ico')
-root.title('Calculadora de Sistemas de ecuaciones no lineales y sistemas de ecuaciones')
-root.resizable(0,0)
-root.geometry("720x420")
-#extra settings
-root.config(cursor="pirate")
+# #properties
+# root.iconbitmap('Calculator.ico')
+# root.title('Calculadora de Sistemas de ecuaciones no lineales y sistemas de ecuaciones')
+# root.resizable(0,0)
+# root.geometry("720x420")
+# #extra settings
+# root.config(cursor="pirate")
 
-#botones para elegir
-pto = Button(root, text="Sistema de ecuaciones", command=windowsys)
-pto2 = Button(root, text="Ecuacion no lineal", command=windowequ)
-pto.place(x=120, y=205)
-pto2.place(x=400, y=205)
-#mensaje
-asd = Label(root, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones y sistemas no lineales!")
-asd.place(x=130, y=50, width=450, height=20)
-#ventana de secante o sistema
+# #botones para elegir
+# pto = tk.Button(root, text="Sistema de ecuaciones", command=windowsys)
+# pto2 = tk.Button(root, text="Ecuacion no lineal", command=windowequ)
+# pto.place(x=120, y=205)
+# pto2.place(x=400, y=205)
+# #mensaje
+# asd = tk.Label(root, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones y sistemas no lineales!")
+# asd.place(x=130, y=50, width=450, height=20)
+# #ventana de secante o sistema
 
-root.mainloop() #principal
+# root.mainloop() #principal
