@@ -30,7 +30,7 @@ root = tk.Tk()
 root.withdraw()
 current_window  = None
 ####   windows   ####
-def windowsys():
+def windowsys(): #sistema de ecuaciones#
     global current_window
     if current_window is not None:
         current_window.destroy()
@@ -47,10 +47,21 @@ def windowsys():
     #mensaje
     asd = tk.Label(window, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones y sistemas no lineales!")
     asd.place(x=130, y=50, width=450, height=20)
+    #entrada de datos
+    a = tk.Entry(window, width=50)
+    a.place(x=130, y=200, width=50)
+    b = tk.Entry(window, width=50)
+    b.place(x=130, y=230, width=50)
+    ea = tk.Entry(window, width=50)
+    ea.place(x=130, y=260, width=50)
+    maxI = tk.Entry(window, width=50)
+    maxI.place(x=130, y=290, width=50)
+    #llamada a function#
+    
     #ventana de secante o sistema
     window.mainloop()
 
-def windowequ():
+def windowequ():  #ecuaciones no lineales#
     global current_window
     if current_window is not None:
         current_window.destroy()
@@ -66,6 +77,16 @@ def windowequ():
     #mensaje
     asd = tk.Label(window, text="¡Hola,Bienvenido a la Calculadora de sistema de ecuaciones!")
     asd.place(x=130, y=50, width=450, height=20)
+    #entrada de datos
+    fun = tk.Entry(window, width=50)
+    fun.place(x=130, y=200, width=50)
+    a = tk.Entry(window, width=50)
+    a.place(x=130, y=230, width=50)
+    b = tk.Entry(window, width=50)
+    b.place(x=130, y=260, width=50)
+    ea = tk.Entry(window, width=50)
+    ea.place(x=130, y=290, width=50)
+    #llamada a function#
     window.mainloop()
 
 def mainWindow():
