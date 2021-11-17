@@ -2,12 +2,14 @@
 import numpy as np
 from math import *
 from sympy import * 
-#Argumentos:
-#func = ecuación no lineal
-#a = intervalo menor
-#b = intervalo mayor
-#err = error permitido
-#definición del método
+#lib for graphics
+from matplotlib import pyplot as plt
+""" Argumentos:
+func = ecuación no lineal
+a = intervalo menor
+b = intervalo mayor
+err = error permitido
+definición del método """
 def secante(func, a, b, err):
     def f(x):     #evaluar la función
         f = eval(func)

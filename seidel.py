@@ -1,9 +1,12 @@
 #-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-36 ejemplo de entrada
-#Argumentos:
-# a = matrix de coeficientes separados por espacios y punto y coma
-# b = vector de terminos independientes separados por punto y coma
-# e = error permitido
-# maxI = maximo de iteraciones
+#lib for graphics
+from matplotlib import pyplot as plt
+""" 
+Argumentos:
+a = matrix de coeficientes separados por espacios y punto y coma
+b = vector de terminos independientes separados por punto y coma
+e = error permitido
+maxI = maximo de iteraciones """
 
 def siedel(a,b,e,maxI): #definición del método
     x0,x1=[],[]
