@@ -5,6 +5,7 @@ from secante import *
 from tkinter import *
 from tkinter.ttk import *
 """
+#-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-36 ejemplo de entrada
 #options for calculator *consola*
 inp = int(input("solución de sistema de ecuaciones(2) o raiz de ecuación no lineal(1)->"))
 #raiz de ecuaciones no lineales secante#
@@ -39,7 +40,6 @@ style.configure('TLabel',background = '#979191')
 #global var
 backg, back2 = PhotoImage(file = "img/back1.png"), PhotoImage(file = "img/back2.png")
 current_window, result =  None, StringVar()
-
 ####
 # windows 
 #####

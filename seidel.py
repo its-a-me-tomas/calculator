@@ -1,4 +1,3 @@
-#-7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6 || -10;35;3;-36 ejemplo de entrada
 #lib for graphics
 import numpy as np
 from matplotlib import pyplot as plt
