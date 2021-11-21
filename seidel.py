@@ -43,14 +43,14 @@ def siedel(a,b,e,maxI): #definición del método
             if len(a[0]) > 3:
                 text += "\nMás de tres dimensiones, no hay gráfica"
             else:
-                graphic(len(a[0]),a,b)
+                graphic(len(a[0]),a,b,x0)
             return "El método no converge"
             break
     ######FIN MÉTODO GAUSS-SEIDEL#######
     if len(a[0]) > 3:
         text += "\nMás de tres dimensiones, no hay gráfica"
     else:
-        graphic(len(a[0]),a,b)
+        graphic(len(a[0]),a,b,x0)
     return text
     
 #conversor de string a matrix
@@ -94,7 +94,8 @@ def converB(array):
 
 #grafica#
 #grafica dinamica para n ecuaciones#
-def graphic(dimension, matrix, independet):
+def graphic(dimension, matrix, independet, var):
+    string = ''
     if dimension == 3:
         fig = plt.figure()
         ax = fig.add_subplot(111,projection="3d")
@@ -102,11 +103,33 @@ def graphic(dimension, matrix, independet):
         X, Y = np.meshgrid(x,y)
         for i in range(len(matrix)):
             z = (independet[i] - matrix[i][0]*X - matrix[i][1]*Y)/matrix[i][2]
-            ax.plot_surface(X,Y,z, facecolors='b', alpha=0.5, rstride=100, cstride=100)
-        plt.show()
+            ax.plot_surface(X,Y,z, alpha=0.5, rstride=100, cstride=100)
+        ax.set_xlabel('Eje x')
+        ax.set_ylabel('Eje y')
+        ax.set_zlabel('Eje z')
+        plt.title('Gráfica de las ecuaciones')
+        plt.show(block=False)
     elif dimension == 2:
         x, y = np.linspace(-10,10,500), np.linspace(-10,10,500)
         for i in range(len(matrix)):
             y = (independet[i]-matrix[i][0]*x)/matrix[i][1]
-            plt.plot(x,y)
-        plt.show()    
+            if matrix[i][0] > 0:
+                if i == range(len(matrix)):
+                    string = 'x{}=('.format(i+1) + str(independet[i])+str(-matrix[i][0])+"x{})/".format(2)+str(matrix[i][1])
+                else:
+                    string = 'x{}=('.format(i+1) + str(independet[i])+str(-matrix[i][0])+"x{})/".format(1)+str(matrix[i][1])
+            else:
+                if i == range(len(matrix)):
+                    string = 'x{}=('.format(i+1) + str(independet[i])+'+'+str(-matrix[i][0])+"x{})/".format(2)+str(matrix[i][1])
+                else:
+                    string = 'x{}=('.format(i+1) + str(independet[i])+'+'+str(-matrix[i][0])+"x{})/".format(1)+str(matrix[i][1])                
+            plt.plot(x,y, label=string)
+            print(string)
+        plt.plot([0],[var[1]], c='k', marker='.')
+        plt.plot([var[0]],[0], c='k', marker='.')
+        plt.xlabel('Eje x')
+        plt.ylabel('Eje y')
+        plt.title('Gráfica de las ecuaciones')
+        plt.legend()
+        plt.grid(True)
+        plt.show(block=False)

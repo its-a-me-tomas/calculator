@@ -5,7 +5,7 @@ from secante import *
 from tkinter import *
 from tkinter.ttk import *
 """
-#Opciones para la calculadora *consola*
+#options for calculator *consola*
 inp = int(input("solución de sistema de ecuaciones(2) o raiz de ecuación no lineal(1)->"))
 #raiz de ecuaciones no lineales secante#
 if inp == 1:
@@ -22,28 +22,27 @@ elif inp == 2 :
     maxI = int(input("Máxima de iteraciones->"))
     seidel(a,b,e,maxI)
 """
-
-############INTERFAZ GRAFICA#########################
+############
+# INTERFAZ GRAFICA
+############
 #INICIALIZAR#
 root = Tk()
 root.withdraw()
 root.wm_attributes('-transparentcolor','#979191')
-#style
+#style configure
 style = Style()
 style.theme_use(themename='clam')
 style.configure('TButton', font=('Candara', -12))
 style.configure('TButton', justify='center')
 style.configure('TLabel', font=('Candara',-13))
+style.configure('TLabel',background = '#979191')
 #global var
 backg, back2 = PhotoImage(file = "img/back1.png"), PhotoImage(file = "img/back2.png")
-
 current_window, result =  None, StringVar()
 
-####   windows   ####
-    
-def DataEquation(func,a,b,e):
-    secante(func,a,b,e)
-
+####
+# windows 
+#####
 
 def windowsys(): #sistema de ecuaciones#
     global current_window, back2, result
@@ -58,7 +57,7 @@ def windowsys(): #sistema de ecuaciones#
     window.title('Calculadora')
     window.resizable(0,0)
     window.geometry("720x420")
-    #image background#
+    #image background
     canva = Canvas(window, width = 720, height = 420)
     canva.pack(fill = 'both', expand = True)
     canva.create_image(0,0, image = back2, anchor = 'nw')
@@ -69,8 +68,8 @@ def windowsys(): #sistema de ecuaciones#
                 text="Calculadora de sistemas de ecuaciones por el método Gauss-Seidel",
                 font="Candara -20 bold")
     asd.place(x=80, y=20)
-    #entrada de datos
 
+    #entrada de datos
     mat = Label(window, 
                 text="Matrix de Coeficientes del sistema\nEjemplo: -7 -4 -1 -1;-1 8 -5 0;-1 -2 -4 0;0 2 0 -6",
                 justify='center')
@@ -105,15 +104,13 @@ def windowsys(): #sistema de ecuaciones#
         text="Calcular raiz",
         command = lambda: result.set(siedel(converA(matrix.get()), converB(independiente.get()), float(error.get()), int(Iteraciones.get()))))
     active.place(x=95,y=330)
-    impresion.place(x=360 ,y= 70)
-    
-    
-    #ventana de secante o sistema
+    impresion.place(x=370 ,y= 70)
+    #mainloop#
     window.mainloop()
 
-
 def windowequ():  #ecuaciones no lineales#
-    global current_window, back2
+    global current_window, back2, result
+    result.set("")
     if current_window is not None:
         current_window.destroy()
     current_window = Toplevel(root)
@@ -130,23 +127,53 @@ def windowequ():  #ecuaciones no lineales#
     #extra settings
     window.config(cursor="circle")
     #mensaje
-    asd = Label(window, text="Calculadora de ecuaciones no lineales")
-    asd.place(x=130, y=50, width=450, height=20)
+    asd = Label(window,
+                text="Calculadora de raices de ecuaciones no lineales\npor el método de la secante",
+                font=('Candara -20 bold'),
+                justify='center')
+    asd.place(x=160, y=10)
+
     #entrada de datos
-    function = Entry(window, width=50)
-    function.place(x=130, y=200, width=50)
-    intervaloA = Entry(window, width=50)
-    intervaloA.place(x=130, y=230,width=50)
-    intervaloB = Entry(window, width=50)
-    intervaloB.place(x=130, y=260, width=50)
-    Error = Entry(window, width=50)
-    Error.place(x=130, y=290, width=50)
-    #get data#
+    fun = Label(window, 
+            text="Función a evaluar\nEjemplo: 4*x**3+2",
+            justify='center')
+    function = Entry(window,
+                    width=40)
+    fun.place(x=95,y=80)
+    function.place(x=35, y=115)
+    
+    intA= Label(window,
+                text = '1er Aproximación',
+                justify='center')
+    intervaloA = Entry(window,
+                        width=10)
+    intA.place(x=40,y=150)
+    intervaloA.place(x=60, y=180)
+    
+    intB = Label(window,
+                text = '2da Aproximación',
+                justify='center')
+    intervaloB = Entry(window,
+                        width=10)
+    intB.place(x=165,y=150)
+    intervaloB.place(x=185, y=180)
+    
+    err = Label(window,
+                text='Error Permitido\nEjemplo: 0.001',
+                justify ='center')
+    Error = Entry(window)
+    err.place(x=105,y=220)
+    Error.place(x=88, y=255)
+    
+    impresion = Label(window,textvariable=result,background = '#979191')
+    
+    #get data || call function#
     active = Button(window,
-    text="Calcular raiz",
-    command = lambda: DataEquation(function.get(), float(intervaloA.get()), float(intervaloB.get()), float(Error.get())))    
-    active.place(x=255,y=300)
-    ##
+                    text="Calcular raiz",
+                    command = lambda: result.set(secante(function.get(), float(intervaloA.get()), float(intervaloB.get()), float(Error.get()))))
+    active.place(x=105,y=295)
+    impresion.place(x=330 ,y= 70)
+    #mainloop#
     window.mainloop()
 
 def mainWindow():
